@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+
+    <title>My Library</title>
+</head>
+<body>
+    <main>
+        <header>
+            <h1 class="header-title">My Book Database</h1>
+        </header>
+
+        <div class="interface">
+            <button id="new-book" onclick="document.querySelector('form').classList.toggle('active')">Add new book</button>
+        </div>
+
+        <div class="bookshelf-container">
+            <div class="left-bookshelf-wall"></div>
+            <div class="bookshelf-main-container">
+                <div class="row-bottom"></div>
+                <div class="book-row">
+
+                </div>
+                <div class="row-bottom"></div>
+            </div>
+            <div class="right-bookshelf-wall"></div>
+        </div>
+        <footer>
+
+        </footer>
+
+        <form action="#">
+            <p class="form-prompt">What is the title?</p>
+            <input type="text" id="book--title" placeholder="Title">
+            <p class="form-prompt">Who is the author?</p>
+            <input type="text" id="book--author" placeholder="Author">
+            <p class="form-prompt">What is the number of pages?</p>
+            <input type="text" id="book--pages" placeholder="# of pages">
+          
+        </form>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
