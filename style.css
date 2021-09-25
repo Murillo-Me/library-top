@@ -60,7 +60,7 @@ header h1 {
 }
 
 button#new-book {
-    background-image: linear-gradient(to right, rgb(118, 148, 247), rgb(199, 211, 252));
+    background-image: linear-gradient(to right, rgb(181, 197, 247), rgb(220, 227, 252));
     padding-inline: 10px;
     padding-block: 5px;
     font-size: 0.8rem;
@@ -82,13 +82,16 @@ footer {
 }
 
 .bookshelf-container {
+    position: relative;
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
     /* flex-direction: column; */
     width: 800px;
-    height: 80vh;
+    height: auto;
     /* background-image: linear-gradient(#da6d42, #ffc18c); */
     background-image: url(./images/wood-background.jpg);   
+    background-repeat: repeat;
     background-size: cover;
     box-shadow: 10px 0px 15px rgb(90, 90, 90);
     border-radius: 10px 10px 0 0;
@@ -96,31 +99,35 @@ footer {
 
 .left-bookshelf-wall, .right-bookshelf-wall {
     width: 30px;
-    height: 100%;
-    border: 2px dotted black;
+    /* height: inherit; */
+    border: 1.5px solid black;
     background-image: url(./images/wood-shelf-lateral.jpg);    
 }
 
 .left-bookshelf-wall {
     border-top-left-radius: 10px;
+    position: absolute;
+    left:-30px;
+    right:-30px;
+    top:0;
+    bottom:0;
 }
 
 .right-bookshelf-wall {
     border-top-right-radius: 10px;
+    position: absolute;
+    left:100%;
+    right:100%;
+    top:0;
+    bottom:0;
 }
 
 
 .bookshelf-main-container {
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
+    flex-wrap: wrap;
     width: 100%;
-}
-
-.book-row {
-    display: flex;
-    justify-content: space-evenly;
-    margin-top: 30px;
-    margin-bottom: 3px;
 }
 
 .book-container {
@@ -128,9 +135,11 @@ footer {
     flex-direction: column;
     justify-content: flex-start;
     font-size: 0.8rem;
-    width: 23%;
+    width: 22%;
     height: 200px;
     margin: auto;
+    margin-top: 30px;
+    margin-bottom: 3px;
     box-shadow: 5px 5px 15px black;
     border-bottom: 1px solid black;
     background-image: linear-gradient(white, grey);
@@ -170,7 +179,7 @@ footer {
 .row-bottom {
     height: 25px;
     width: 100%;
-    border: 2px dotted black;
+    border: 1.5px solid black;
     background-image: url(./images/wood-shelf-lateral.jpg);
 }
 
@@ -180,11 +189,11 @@ form#addBookForm {
     display: none;
     position: absolute;
     top: 20%;
-    background-image: linear-gradient(rgb(158, 85, 85), rgb(163, 106, 106));
-    padding: 30px 40px;
+    background-image: linear-gradient(rgb(230, 200, 200), white);
+    padding: 20px 30px;
     border: 2px solid black;
     border-radius: 10px;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     box-shadow: 5px 5px 15px black;
 }
 
@@ -194,10 +203,50 @@ form#addBookForm.active {
 }
 
 form#addBookForm > input {
-    margin-top: 3px;
+    margin-top: 5px;
     margin-bottom: 10px;
     width: 100%;
-    padding: 5px;
+    padding: 8px;
     border-radius: 10px;
     width: 400px;
+    font-size: 1rem;
 }
+
+form#addBookForm > button#submitBtn {
+    margin: auto;
+    margin-top: 20px;
+    width: 40%;
+    padding: 12px;
+    border-radius: 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 3px black;
+    box-shadow: 2px 2px 15px black;
+    color: white;
+    background-color: rgb(124, 59, 59);
+}
+
+button {
+    box-shadow: 1px 1px 8px black;
+    transition: all 0.1s ease;
+}
+
+button:hover {
+    cursor: pointer;
+    box-shadow: 2px 2px 10px black;
+    transform: translate(1px,1px);
+}
+
+button.closeBtn {
+    position: absolute;
+    padding: 3px;
+    text-align: center;
+    align-self: flex-end;
+    margin: 5px;
+    /* right: 90%; */
+    width: 30px;
+    height: 30px;
+    background-color: rgb(236, 110, 110);
+    border-radius: 8px;
+}
+
