@@ -91,6 +91,7 @@ footer {
     background-image: url(./images/wood-background.jpg);   
     background-size: cover;
     box-shadow: 10px 0px 15px rgb(90, 90, 90);
+    border-radius: 10px 10px 0 0;
 }
 
 .left-bookshelf-wall, .right-bookshelf-wall {
@@ -99,6 +100,15 @@ footer {
     border: 2px dotted black;
     background-image: url(./images/wood-shelf-lateral.jpg);    
 }
+
+.left-bookshelf-wall {
+    border-top-left-radius: 10px;
+}
+
+.right-bookshelf-wall {
+    border-top-right-radius: 10px;
+}
+
 
 .bookshelf-main-container {
     display: flex;
@@ -131,6 +141,10 @@ footer {
     object-fit: contain;
     max-height: 50%;
     margin-top: 8px;
+    border-radius: 7px;
+    width: fit-content;
+    height: fit-content;
+    margin-inline: auto;
 }
 
 .book-container .book-title {
@@ -162,7 +176,7 @@ footer {
 
 /* FORM CSS */
 
-form {
+form#addBookForm {
     display: none;
     position: absolute;
     top: 20%;
@@ -174,14 +188,16 @@ form {
     box-shadow: 5px 5px 15px black;
 }
 
-form.active {
-    display: block;
+form#addBookForm.active {
+    display: flex;
+    flex-direction: column;
 }
 
-form > input {
+form#addBookForm > input {
     margin-top: 3px;
     margin-bottom: 10px;
     width: 100%;
     padding: 5px;
     border-radius: 10px;
+    width: 400px;
 }

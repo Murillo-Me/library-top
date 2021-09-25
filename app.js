@@ -23,7 +23,6 @@ briefHistoryOfTime.addBookToLibrary()
 
 function displayLibrary(library) {
     const bookRowDiv = document.querySelector('.book-row')
-    console.log(bookRowDiv);
     library.forEach(book => {
         const bookDiv = document.createElement('div')
         bookDiv.setAttribute('class', 'book-container')
@@ -35,8 +34,10 @@ function displayLibrary(library) {
         `
         bookRowDiv.append(bookDiv)
 
-        console.log(bookDiv);
     })
 }
 
 displayLibrary(myLibrary);
+
+const btnSubmitNewBook = document.getElementById('submitBook')
+console.log(btnSubmitNewBook);

@@ -29,17 +29,18 @@
             </div>
             <div class="right-bookshelf-wall"></div>
         </div>
-        <footer>
+        <!-- <footer>
 
-        </footer>
+        </footer> -->
 
-        <form action="#">
-            <p class="form-prompt">What is the title?</p>
-            <input type="text" id="book--title" placeholder="Title">
-            <p class="form-prompt">Who is the author?</p>
-            <input type="text" id="book--author" placeholder="Author">
-            <p class="form-prompt">What is the number of pages?</p>
-            <input type="text" id="book--pages" placeholder="# of pages">
+        <form id="addBookForm">
+            <label for="book--title" class="form-prompt">What is the title?</label>
+            <input type="text" name="book--title" id="book--title" placeholder="Title">
+            <label for="book--author" class="form-prompt">Who is the author?</label>
+            <input type="text" name="book--author" id="book--author" placeholder="Author">
+            <label for="book--pages" class="form-prompt">What is the number of pages?</label>
+            <input type="text" name="book--pages" id="book--pages" placeholder="# of pages">
+            <button type="submit" class="submit" id="submitBook">Add</button>
           
         </form>
     </main>
