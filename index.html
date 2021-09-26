@@ -15,7 +15,8 @@
         </header>
 
         <div class="interface">
-            <button id="new-book" onclick="document.querySelector('form').classList.toggle('active')">Add new book</button>
+            <button id="new-book">Add new book</button>
+            <button id="clear-all-btn">Clear all</button>
         </div>
 
         <div class="bookshelf-container">
@@ -33,14 +34,16 @@
 
         <form id="addBookForm">
 
-            <button class="closeBtn" id="closeBtn">X</button>
             <label for="book--title" class="form-prompt">What is the title?</label>
             <input type="text" name="book--title" id="book--title" placeholder="Title">
             <label for="book--author" class="form-prompt">Who is the author?</label>
             <input type="text" name="book--author" id="book--author" placeholder="Author">
             <label for="book--pages" class="form-prompt">What is the number of pages?</label>
             <input type="text" name="book--pages" id="book--pages" placeholder="# of pages">
+            <label for="read-status-checkbox">Have you finished reading it?</label>
+            <input type="checkbox" name="read-status-checkbox" id="read-status-checkbox">
             <button type="submit" class="submit" id="submitBtn">Add</button>
+            <button class="closeBtn" id="closeBtn">X</button>
           
         </form>
     </main>

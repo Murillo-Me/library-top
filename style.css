@@ -26,6 +26,10 @@ img {
 
 /* PAGE CSS */
 
+* {
+    --book-height: 200px;
+}
+
 body {
     background-image: url(./images/white-wall.jpg);
 }
@@ -38,13 +42,11 @@ main {
 
 header {
     text-align: center;
-    width: 80%;
+    width: 100%;
     padding: 20px;
-    /* margin-bottom: 35px; */
-    background-color: white;
-    border-radius: 0px 0px 30px 30px;
+    background-color: rgb(80, 32, 32);
+    background-image: url(./images/wood-shelf-lateral.jpg);
     border-top: 0;
-    background-image: url(./images/red-satin.jpg);
     box-shadow: 5px 5px 5px rgb(90, 90, 90);
 }
 
@@ -59,18 +61,23 @@ header h1 {
     margin: 15px;
 }
 
-button#new-book {
-    background-image: linear-gradient(to right, rgb(181, 197, 247), rgb(220, 227, 252));
+.interface button {
     padding-inline: 10px;
-    padding-block: 5px;
+    padding-block: 8px;
     font-size: 0.8rem;
     font-weight: bold;
     border-radius: 5px;
-    border: 1px solid rgb(97, 116, 180);
+    border: 0.5px solid black;
+    cursor: pointer;
+    margin-inline: 20px;
 }
 
-button#new-book:hover {
-    cursor: pointer;
+.interface button#new-book {
+    background-image: linear-gradient(to right, rgb(181, 197, 247), rgb(220, 227, 252));
+}
+
+.interface button#clear-all-btn {
+    background-image: linear-gradient(to right, rgb(247, 181, 181), rgb(252, 220, 220));
 }
 
 footer {
@@ -86,20 +93,16 @@ footer {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    /* flex-direction: column; */
     width: 800px;
     height: auto;
-    /* background-image: linear-gradient(#da6d42, #ffc18c); */
     background-image: url(./images/wood-background.jpg);   
     background-repeat: repeat;
-    background-size: cover;
+    background-size: initial;
     box-shadow: 10px 0px 15px rgb(90, 90, 90);
-    border-radius: 10px 10px 0 0;
 }
 
 .left-bookshelf-wall, .right-bookshelf-wall {
     width: 30px;
-    /* height: inherit; */
     border: 1.5px solid black;
     background-image: url(./images/wood-shelf-lateral.jpg);    
 }
@@ -125,7 +128,6 @@ footer {
 
 .bookshelf-main-container {
     display: flex;
-    /* flex-direction: column; */
     flex-wrap: wrap;
     width: 100%;
 }
@@ -136,7 +138,7 @@ footer {
     justify-content: flex-start;
     font-size: 0.8rem;
     width: 22%;
-    height: 200px;
+    height: var(--book-height);
     margin: auto;
     margin-top: 30px;
     margin-bottom: 3px;
@@ -190,7 +192,7 @@ form#addBookForm {
     position: absolute;
     top: 20%;
     background-image: linear-gradient(rgb(230, 200, 200), white);
-    padding: 20px 30px;
+    padding: 15px 25px;
     border: 2px solid black;
     border-radius: 10px;
     font-size: 1.3rem;
@@ -199,17 +201,40 @@ form#addBookForm {
 
 form#addBookForm.active {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 400px;
 }
 
-form#addBookForm > input {
+form#addBookForm > label:first-of-type {
+    margin-top: 30px;
+}
+
+form#addBookForm > label {
+    width: 100%;
+}
+
+form#addBookForm > label:last-of-type {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    width: fit-content;
+}
+
+form#addBookForm > input[type=text] {
     margin-top: 5px;
     margin-bottom: 10px;
-    width: 100%;
+    width: 70%;
     padding: 8px;
     border-radius: 10px;
     width: 400px;
     font-size: 1rem;
+}
+
+form#addBookForm > input#read-status-checkbox {
+    align-self: center;
+    margin-left: 15px;
+    margin-top: 12px;
+    transform: scale(1.3);
 }
 
 form#addBookForm > button#submitBtn {
@@ -243,10 +268,78 @@ button.closeBtn {
     text-align: center;
     align-self: flex-end;
     margin: 5px;
-    /* right: 90%; */
     width: 30px;
     height: 30px;
     background-color: rgb(236, 110, 110);
     border-radius: 8px;
 }
 
+form#addBookForm > button.closeBtn {
+    margin-left: 330px;
+    margin-bottom: 360px;
+}
+
+button.book-status-btn {
+    position: absolute;
+    height: 25px;
+    width: 80px;
+    margin: 0px;
+    margin-top: calc(var(--book-height) - 26px);
+    box-shadow: none;
+    border-bottom-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border: none;
+    font-weight: 600;
+    font-size: 0.7rem;
+    background-image: radial-gradient(rgb(248, 201, 201), rgb(245, 153, 153));
+    color: rgb(105, 0, 0);
+}
+
+button.read {
+    background-image: radial-gradient(rgb(201, 248, 207), rgb(153, 245, 176));
+    color: rgb(0, 105, 35);
+}
+
+@media only screen and (max-width: 870px) {
+    .bookshelf-container {
+        width: 100vw;
+        height: fit-content;
+        flex-direction: column;
+    }
+
+    .book-container {
+        width: 32%;
+        height: 200px;
+        margin-block: 25px;
+    }
+
+    .left-bookshelf-wall, .right-bookshelf-wall {
+        display: none;
+    }
+
+    .row-bottom {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .bookshelf-container {
+        width: 100vw;
+        height: fit-content;
+        flex-direction: column;
+    }
+
+    .book-container {
+        width: 80%;
+        height: 200px;
+        margin-block: 25px;
+    }
+
+    .left-bookshelf-wall, .right-bookshelf-wall {
+        display: none;
+    }
+
+    .row-bottom {
+        display: none;
+    }
+}
