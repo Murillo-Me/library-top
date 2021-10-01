@@ -320,6 +320,10 @@ button.read {
     .row-bottom {
         display: none;
     }
+
+    .row-bottom:first-of-type, .row-bottom:last-of-type {
+        display: block;
+    }
 }
 
 @media only screen and (max-width: 600px) {

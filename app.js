@@ -135,6 +135,7 @@ addBookForm.addEventListener('submit', (e) => {
 const newBookBtn = document.getElementById('new-book')
 newBookBtn.addEventListener('click', () => {
     addBookForm.classList.toggle('active')
+    addBookForm.querySelector('input:first-of-type').focus()
 })
 
 const clearAllBtn = document.getElementById('clear-all-btn')
