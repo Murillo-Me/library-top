@@ -3,13 +3,28 @@ function Book(title, author, numberOfPages, isRead) {
     this.author = author;
     this.numberOfPages = numberOfPages;
     this.isRead = isRead;
+
+    // https://openlibrary.org/dev/docs/api/search
+    // https://openlibrary.org/dev/docs/api/covers
+    this.cover = fetch(`http://openlibrary.org/search.json?q=${title}`).then(response => (response.json())).then(data => {return this.isbn = data.docs[0].isbn[0]})
+    .then(isbn => {return `https://covers.openlibrary.org/b/isbn/${isbn}-M.jpg`}).catch(() => {return './images/cover-example-placeholder.jpg'})
+
 }
 
 function addBookToLibrary() {
     myLibrary.push(this)
+    addToLocalStorage('library', myLibrary)
 }
 
-function displayLibrary(library) {
+function addToLocalStorage(key, value) {
+    if (typeof(value) != 'object') {
+        localStorage.setItem(key, value)
+    } else {
+        localStorage.setItem(key, JSON.stringify(value))
+    }
+}
+
+async function displayLibrary(library) {
     const bookshelfDiv = document.querySelector('.bookshelf-main-container')
     bookshelfDiv.textContent = ''
 
@@ -24,14 +39,25 @@ function displayLibrary(library) {
             const bookDiv = document.createElement('div')
             bookDiv.setAttribute('class', 'book-container')
             bookDiv.setAttribute('data-key', `${i}`)
-            bookDiv.innerHTML = `
-            <button class="closeBtn deleteBookBtn" data-key="${i}">X</button>
-            <img src="./images/cover-example-placeholder.jpg">
-            <h3 class="book-title">${book.title}</h3>
-            <span class="book-author">${book.author}</span>
-            <button class="book-status-btn ${(book.isRead) ? 'read' : ''}" data-key="${i}">${(book.isRead) ? 'Already read' : 'Not read'}</button>
-            <p class="book-pages">${book.numberOfPages} pages</p>
+            book.cover.then(cover => {
+                bookDiv.innerHTML = `
+                        <button class="closeBtn deleteBookBtn" data-key="${i}">X</button>
+                        <img src="${cover}">
+                        <h3 class="book-title">${book.title}</h3>
+                        <span class="book-author">${book.author}</span>
+                        <button class="book-status-btn ${(book.isRead) ? 'read' : ''}" data-key="${i}">${(book.isRead) ? 'Already read' : 'Not read'}</button>
+                        <p class="book-pages">${book.numberOfPages} pages</p>
             `
+            })
+
+            // bookDiv.innerHTML = `
+            // <button class="closeBtn deleteBookBtn" data-key="${i}">X</button>
+            // <img src="${book.cover}">
+            // <h3 class="book-title">${book.title}</h3>
+            // <span class="book-author">${book.author}</span>
+            // <button class="book-status-btn ${(book.isRead) ? 'read' : ''}" data-key="${i}">${(book.isRead) ? 'Already read' : 'Not read'}</button>
+            // <p class="book-pages">${book.numberOfPages} pages</p>
+            // `
             
             bookshelfDiv.append(bookDiv)
 
@@ -99,8 +125,6 @@ let myLibrary = [];
 
 const invisibleMan = new Book('Invisible Man', 'Ralph Ellison', 581, true)
 const beautifulWorld = new Book('Beautiful World, Where Are You: A Novel', 'Sally Rooney', 353, false)
-const briefHistoryOfTime = new Book('A Brief History of Time', 'Stephen Hawking', 212, true)
-const dontCloseYourEyes = new Book("Don't Close Your Eyes", 'Lynessa Layne', 326, false)
 const theGreatGatsby = new Book('The Great Gatsby', 'F. Scott Fitzgerald', 200, false)
 const thePurse = new Book('The Purse', 'Julie A. Burns', 278, false)
 const timeAndTimeAgain = new Book('Time and Time Again', 'Ben Elton', 386, true)
@@ -109,8 +133,6 @@ Book.prototype.addBookToLibrary = addBookToLibrary
 
 invisibleMan.addBookToLibrary()
 beautifulWorld.addBookToLibrary()
-briefHistoryOfTime.addBookToLibrary()
-dontCloseYourEyes.addBookToLibrary()
 theGreatGatsby.addBookToLibrary()
 thePurse.addBookToLibrary()
 timeAndTimeAgain.addBookToLibrary()
@@ -146,3 +168,5 @@ closeBtn.addEventListener('click', (e) => {
     e.preventDefault()
     addBookForm.classList.toggle('active')
 })
+
+console.log(invisibleMan.cover);
