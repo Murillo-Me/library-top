@@ -6,7 +6,7 @@ function Book(title, author, numberOfPages, isRead) {
 
     // https://openlibrary.org/dev/docs/api/search
     // https://openlibrary.org/dev/docs/api/covers
-    this.cover = fetch(`http://openlibrary.org/search.json?q=${title}`).then(response => (response.json())).then(data => {return this.isbn = data.docs[0].isbn[0]})
+    this.cover = fetch(`https://openlibrary.org/search.json?q=${title}`).then(response => (response.json())).then(data => {return this.isbn = data.docs[0].isbn[0]})
     .then(isbn => {return `https://covers.openlibrary.org/b/isbn/${isbn}-M.jpg`}).catch(() => {return './images/cover-example-placeholder.jpg'})
 
 }
