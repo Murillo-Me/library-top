@@ -148,14 +148,29 @@ footer {
     border-radius: 8px;
 }
 
-.book-container img {
+.book-container .book-cover {
     object-fit: contain;
-    max-height: 50%;
     margin-top: 8px;
     border-radius: 7px;
-    width: fit-content;
-    height: fit-content;
+    height: 90px;
+    width: auto;
+}
+
+.skeleton {
+    min-width: 70px;
+    max-width: 70px;
     margin-inline: auto;
+    animation: skeleton-loading 1s linear infinite alternate;
+}
+
+@keyframes skeleton-loading {
+    0% {
+        background-color: hsl(200, 20%, 70%);
+    }
+
+    100% {
+        background-color: hsl(200, 20%, 95%);
+    }
 }
 
 .book-container .book-title {

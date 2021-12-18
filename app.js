@@ -39,25 +39,25 @@ async function displayLibrary(library) {
             const bookDiv = document.createElement('div')
             bookDiv.setAttribute('class', 'book-container')
             bookDiv.setAttribute('data-key', `${i}`)
+
+            bookDiv.innerHTML = `
+            <button class="closeBtn deleteBookBtn" data-key="${i}">X</button>
+            <div class="skeleton book-cover"></div>
+            <h3 class="book-title">${book.title}</h3>
+            <span class="book-author">${book.author}</span>
+            <button class="book-status-btn ${(book.isRead) ? 'read' : ''}" data-key="${i}">${(book.isRead) ? 'Already read' : 'Not read'}</button>
+            <p class="book-pages">${book.numberOfPages} pages</p>
+`
             book.cover.then(cover => {
                 bookDiv.innerHTML = `
                         <button class="closeBtn deleteBookBtn" data-key="${i}">X</button>
-                        <img src="${cover}">
+                        <img class="book-cover" src="${cover}">
                         <h3 class="book-title">${book.title}</h3>
                         <span class="book-author">${book.author}</span>
                         <button class="book-status-btn ${(book.isRead) ? 'read' : ''}" data-key="${i}">${(book.isRead) ? 'Already read' : 'Not read'}</button>
                         <p class="book-pages">${book.numberOfPages} pages</p>
             `
             })
-
-            // bookDiv.innerHTML = `
-            // <button class="closeBtn deleteBookBtn" data-key="${i}">X</button>
-            // <img src="${book.cover}">
-            // <h3 class="book-title">${book.title}</h3>
-            // <span class="book-author">${book.author}</span>
-            // <button class="book-status-btn ${(book.isRead) ? 'read' : ''}" data-key="${i}">${(book.isRead) ? 'Already read' : 'Not read'}</button>
-            // <p class="book-pages">${book.numberOfPages} pages</p>
-            // `
             
             bookshelfDiv.append(bookDiv)
 
@@ -168,5 +168,3 @@ closeBtn.addEventListener('click', (e) => {
     e.preventDefault()
     addBookForm.classList.toggle('active')
 })
-
-console.log(invisibleMan.cover);
