@@ -57,6 +57,8 @@ async function displayLibrary(library) {
                         <button class="book-status-btn ${(book.isRead) ? 'read' : ''}" data-key="${i}">${(book.isRead) ? 'Already read' : 'Not read'}</button>
                         <p class="book-pages">${book.numberOfPages} pages</p>
             `
+
+                addBookEventListeners()
             })
             
             bookshelfDiv.append(bookDiv)
@@ -79,6 +81,10 @@ async function displayLibrary(library) {
     rowBottom.classList.add('row-bottom')
     bookshelfDiv.append(rowBottom)
 
+    addBookEventListeners()
+}
+
+function addBookEventListeners() {
     let allDeleteBookBtn = document.querySelectorAll('.deleteBookBtn')
     allDeleteBookBtn.forEach(btn => btn.addEventListener('click', deleteBook))
 
@@ -95,7 +101,6 @@ function updateIndexes() {
 }
 
 function deleteBook() {
-    console.log(this);
     const bookIndex = this.getAttribute('data-key')
     const divToRemove = document.querySelector(`div[data-key="${bookIndex}"]`)
     divToRemove.remove()
